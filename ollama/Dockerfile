@@ -1,4 +1,4 @@
-FROM ollama/ollama:0.32.13
+FROM ollama/ollama:latest
 
 # Companion Ollama service for PDFMathTranslate.
 # The image auto-starts `ollama serve` on 0.0.0.0:11434.

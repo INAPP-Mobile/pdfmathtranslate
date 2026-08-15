@@ -12,7 +12,7 @@
     "description": "Use the bundled Ollama sibling service as the translation engine. Set to false to pick another provider in the Web UI."
   },
   "PDF2ZH_OLLAMA_HOST": {
-    "value": "${{ollama/ollama:0.32.13.OLLAMA_BASE_URL}}",
+    "value": "${{ollama/ollama:latest.OLLAMA_BASE_URL}}",
     "description": "Ollama API base URL. Auto-linked to the sibling Ollama service's private domain over :11434."
   },
   "PDF2ZH_OLLAMA_MODEL": {

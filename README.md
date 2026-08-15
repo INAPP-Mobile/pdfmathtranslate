@@ -121,7 +121,7 @@ The Web UI **Settings** panel ships ~20 built-in engines (OpenAI-compatible, Goo
                         ▼
 ┌───────────────────────────────────────┐
 │  Ollama (companion, no public domain) │
-│  ollama/ollama:0.32.13                │
+│  ollama/ollama:latest                 │
 │  ollama serve — /api/generate, …      │
 │  volume: ollama-models → /root/.ollama│
 └───────────────────────────────────────┘
@@ -130,7 +130,7 @@ The Web UI **Settings** panel ships ~20 built-in engines (OpenAI-compatible, Goo
 - **Two services, one public endpoint.** Only the app is exposed; Ollama is reachable via Railway internal DNS on `:11434`.
 - **Auto-wiring.** At deploy time the form fills `PDF2ZH_OLLAMA_HOST` from the sibling's `OLLAMA_BASE_URL` (the `companion-mapping.json` at the repo root maps the app variable to the sibling variable).
 - **Persistence split.** Models persist on the Ollama volume; app config lives in the container (re-seed via env vars or the UI after redeploy — see [About Hosting](#about-hosting)).
-- **Pinned images.** App `awwaawwa/pdfmathtranslate-next:v2.9.0-babeldoc-v0.6.4` and Ollama `0.32.13` — upgrade by changing the `FROM` lines and redeploying.
+- **Pinned app image.** App `awwaawwa/pdfmathtranslate-next:v2.9.0-babeldoc-v0.6.4` — upgrade by bumping the `FROM` tag. Ollama tracks `latest` on Docker Hub.
 
 ## Local (non-Railway) self-hosting
 
@@ -140,7 +140,7 @@ docker run -d --name pdfmathtranslate -p 7860:7860 \
   awwaawwa/pdfmathtranslate-next:v2.9.0-babeldoc-v0.6.4
 # ollama (on the same host)
 docker run -d --name ollama -p 11434:11434 -v ollama:/root/.ollama \
-  ollama/ollama:0.32.13
+  ollama/ollama:latest
 ```
 
 Then in the Web UI set the Ollama host to `http://host.docker.internal:11434` (or `http://localhost:11434` for a bare-metal Ollama).
