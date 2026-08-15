@@ -1,6 +1,6 @@
 # PDFMathTranslate
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/K1_rOt)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/pdfmathtranslate)
 
 PDFMathTranslate (v2, `pdf2zh-next`) is a Web UI that converts academic and research PDFs into translated versions while preserving the original layout, formulas, tables, text boxes, and footnotes. This template deploys the official Gradio Web UI together with a bundled **Ollama** LLM service, so every translation runs locally on your own infrastructure — no external translation API keys required.
 
@@ -18,7 +18,7 @@ Host your own PDF math translator in minutes with a single click. The template p
 
 ## Deploy to Railway
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/K1_rOt)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/pdfmathtranslate)
 
 Click the button above to deploy this template to Railway. The template provisions two services:
 
@@ -100,32 +100,7 @@ The Web UI **Settings** panel ships ~20 built-in engines (OpenAI-compatible, Goo
 
 # Architecture
 
-```
-                 Railway edge
-     https://<app>.up.railway.app:8080
-                        │
-                        ▼
-┌───────────────────────────────────────┐
-│  PDFMathTranslate (app service)       │
-│  awwaawwa/pdfmathtranslate-next       │
-│  ┌─────────────────────────────────┐  │
-│  │ Gradio Web UI — bind port        │  │
-│  │ PDF2ZH_SERVER_PORT (= $PORT)    │  │
-│  │ PDF ⇄ layout engine ⇄ BabelDOC  │  │
-│  │ translation engines (20+)       │  │
-│  └────────────┬────────────────────┘  │
-└───────────────┼───────────────────────┘
-        PDF2ZH_OLLAMA_HOST
-        (private DNS, :11434)
-                        │
-                        ▼
-┌───────────────────────────────────────┐
-│  Ollama (companion, no public domain) │
-│  ollama/ollama:latest                 │
-│  ollama serve — /api/generate, …      │
-│  volume: ollama-models → /root/.ollama│
-└───────────────────────────────────────┘
-```
+Railway edge → **PDFMathTranslate** app service (`awwaawwa/pdfmathtranslate-next`, Gradio Web UI bound to `PDF2ZH_SERVER_PORT`) → `PDF2ZH_OLLAMA_HOST` (private DNS, `:11434`) → **Ollama** companion (`ollama/ollama:latest`, no public domain, volume `ollama-models → /root/.ollama`).
 
 - **Two services, one public endpoint.** Only the app is exposed; Ollama is reachable via Railway internal DNS on `:11434`.
 - **Auto-wiring.** At deploy time the form fills `PDF2ZH_OLLAMA_HOST` from the sibling's `OLLAMA_BASE_URL` (the `companion-mapping.json` at the repo root maps the app variable to the sibling variable).
