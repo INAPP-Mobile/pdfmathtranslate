@@ -1,0 +1,27 @@
+{
+  "PORT": {
+    "defaultValue": "8080",
+    "description": "Public HTTP port. Railway routes the public domain to this port. Keep it equal to PDF2ZH_SERVER_PORT.",
+    "isOptional": true
+  },
+  "PDF2ZH_SERVER_PORT": {
+    "defaultValue": "8080",
+    "description": "Port the Web UI binds inside the container. Must match PORT. Defaults to 8080.",
+    "isOptional": true
+  },
+  "PDF2ZH_OLLAMA": {
+    "defaultValue": "true",
+    "description": "Use the bundled Ollama sibling service as the translation engine.",
+    "isOptional": true
+  },
+  "PDF2ZH_OLLAMA_HOST": {
+    "defaultValue": "${{ollama/ollama:0.32.13.OLLAMA_BASE_URL}}",
+    "description": "Ollama API base URL. Auto-linked to the sibling Ollama service's private domain over :11434.",
+    "isOptional": false
+  },
+  "PDF2ZH_OLLAMA_MODEL": {
+    "defaultValue": "",
+    "description": "Ollama model to translate with (e.g. qwen3:8b, gemma2, llama3.2). No model is pre-pulled — pull one first (ollama pull <model>). Leave empty to choose it in the Web UI.",
+    "isOptional": true
+  }
+}

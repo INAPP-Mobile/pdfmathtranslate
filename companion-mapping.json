@@ -1,0 +1,5 @@
+{
+  "ollama": {
+    "PDF2ZH_OLLAMA_HOST": "OLLAMA_BASE_URL"
+  }
+}
