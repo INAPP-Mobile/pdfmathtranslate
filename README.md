@@ -1,6 +1,6 @@
 # PDFMathTranslate
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/TEMPLATE_CODE)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/K1_rOt)
 
 PDFMathTranslate (v2, `pdf2zh-next`) is a Web UI that converts academic and research PDFs into translated versions while preserving the original layout, formulas, tables, text boxes, and footnotes. This template deploys the official Gradio Web UI together with a bundled **Ollama** LLM service, so every translation runs locally on your own infrastructure — no external translation API keys required.
 
@@ -18,7 +18,7 @@ Host your own PDF math translator in minutes with a single click. The template p
 
 ## Deploy to Railway
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/TEMPLATE_CODE)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/K1_rOt)
 
 Click the button above to deploy this template to Railway. The template provisions two services:
 
