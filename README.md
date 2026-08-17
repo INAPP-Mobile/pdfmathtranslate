@@ -2,7 +2,7 @@
 
 [![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/pdfmathtranslate)
 
-PDFMathTranslate (v2, `pdf2zh-next`) is a Web UI that converts academic and research PDFs into translated versions while preserving the original layout, formulas, tables, text boxes, and footnotes. This template deploys the official Gradio Web UI together with a bundled **Ollama** LLM service, so every translation runs locally on your own infrastructure — no external translation API keys required.
+PDFMathTranslate (v2, `pdf2zh-next`) is a Web UI that converts academic and research PDFs into translated versions while preserving the original layout, formulas, tables, text boxes, and footnotes. This template deploys the official Gradio Web UI with a bundled **Ollama** service (opt-in, local). Default engine is **SiliconFlow Free** (no API key). Switch to Ollama or any other provider in the Web UI Settings for keyless, on-your-infra translation.
 
 ## Screenshots
 
@@ -48,7 +48,7 @@ The app runs **inside the official prebuilt `awwaawwa/pdfmathtranslate-next:v2.9
 
 ## Why Deploy
 
-- **Private, keyless PDF translation** — the companion Ollama service keeps every request on your own Railway network; no document ever leaves your infrastructure.
+- **Translation engine options** — default SiliconFlow Free (no key); switch to bundled Ollama for local, or any of the ~20 other built-in engines (OpenAI, Google, DeepL, …).
 - **Layout-preserving academic translation** — formulas, numbered lists, tables, and footnotes keep their positions instead of being reflowed like plain text translation.
 - **One-click, two-service, zero glue** — the Ollama host is auto-wired in the deploy form; no manual DNS, no proxy, no API keys.
 - **Bring any engine** — swap to OpenAI-compatible, DeepL, Google, Gemini, or any of the 20+ built-in engines from the Web UI Settings panel and the same container does the rest.
@@ -88,7 +88,7 @@ Then in the Web UI **Settings** panel, pick engine **Ollama**, set the model to 
 |---|---|---|
 | `PORT` | `8080` | Public HTTP port (Railway default; the public domain targets this port). |
 | `PDF2ZH_SERVER_PORT` | `8080` | Port the Web UI binds inside the container. Keep it equal to `PORT`. |
-| `PDF2ZH_OLLAMA` | `true` | Enable the bundled Ollama service as the translation engine. Set `false` to disable. |
+| `PDF2ZH_OLLAMA` | `false` | Ollama engine **opt-in**. Set `true` and pull a model to translate fully locally. Default `false` = app uses built-in default engine (SiliconFlow Free). |
 | `PDF2ZH_OLLAMA_HOST` | *(auto-wired)* | Ollama API base URL. Auto-linked to the sibling service's private domain over `:11434`. For a local self-host, point it at `http://localhost:11434`. |
 | `PDF2ZH_OLLAMA_MODEL` | *(empty)* | Ollama model name to translate with (e.g. `qwen3:8b`). Pull the model first (see above). Leave empty to choose it in the Web UI Settings. |
 | `PDF2ZH_NUM_PREDICT` | `2000` | Max tokens predicted per translation chunk. |

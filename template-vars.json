@@ -10,8 +10,8 @@
     "isOptional": true
   },
   "PDF2ZH_OLLAMA": {
-    "defaultValue": "true",
-    "description": "Use the bundled Ollama sibling service as the translation engine.",
+    "defaultValue": "false",
+    "description": "Use the bundled Ollama sibling service as the translation engine (opt-in). Default off: the app uses its built-in default engine (SiliconFlow Free). Set true and pull a model to translate fully locally.",
     "isOptional": true
   },
   "PDF2ZH_OLLAMA_HOST": {
